@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aryu</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(45deg, #ff3366, #ff6b6b);
+            color: #fff;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+        .message {
+            font-size: 1.5em;
+            max-width: 600px;
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0;
+            animation: float 4s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        .cta-button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            background-color: transparent;
+            border: 2px solid #fff;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-radius: 50px;
+        }
+        .cta-button:hover {
+            background-color: #fff;
+            color: #ff3366;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Aryu, My Love</h1>
+        <p class="message">In this vast digital universe, my heart found its home in you.</p>
+        <p class="message">Every pixel of my being resonates with love for you.</p>
+        <p class="message">Will you be the co-author of our future love story?</p>
+        <button class="cta-button" onclick="showFinalMessage()">Yes, I Will!</button>
+    </div>
+
+    <script>
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        setInterval(createHeart, 300);
+
+        const messages = document.querySelectorAll('.message');
+        messages.forEach((msg, index) => {
+            setTimeout(() => {
+                msg.style.opacity = '1';
+                msg.style.transform = 'translateY(0)';
+            }, index * 1000);
+        });
+
+        function showFinalMessage() {
+            const container = document.querySelector('.container');
+            container.innerHTML = '<h1>Our Love Story Begins Now!</h1>';
+            const fireworks = setInterval(createHeart, 50);
+            setTimeout(() => clearInterval(fireworks), 3000);
+        }
+    </script>
+</body>
+</html>
+
